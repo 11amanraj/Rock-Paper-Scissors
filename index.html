@@ -7,32 +7,58 @@
 <body>
   <script>
     const choices = ["rock","paper","scissors"];
+    let score = [0,0];
 
     function getComputerSelection() {
         return choices[Math.floor(Math.random()*choices.length)];
     }
 
-    function playRound(playerSelection = "paper") {
+    function playRound() {
+        
+        let roundResult;
+        let playerInput = prompt("Pick your Poison","Rock");
+        let playerSelection = playerInput.toLowerCase();
         computerSelection = getComputerSelection();
 
-        if (playerSelection === computerSelection) {
-            return "This round is a tie";
-        } else if (playerSelection === "rock") { 
-            if (computerSelection === "paper") {
-                return "You Lose! Paper beats Rock";
-            } else { return "You Win! Rock beats Scissors";}
+        if (score[0]===5) {
+            return "You reached 5 Points. You win the match";
 
-        } else if (playerSelection === "paper") {
-            if (computerSelection === "rock") {
-                return "You Win! Paper beats Rock";
-            } else { return "You Lose! Scissors beats Paper";}
+        } else if(score[1]==5) {
+            return "CPU reached 5 Points. You lose the match";
+        
+        } else {
+            if (playerSelection === computerSelection) {
+                roundResult = "This round is a tie";
 
-        } else if (playerSelection === "scissors") {
-            if (computerSelection === "rock") {
-                return "You Lose! Rock beats Scissors"
-            } else { return "You Win! Scissors beat Paper"}
-        } else {return "Your Input is Wrong!"}
-    }
+            } else if (playerSelection === "rock") { 
+                if (computerSelection === "paper") {
+                    score[1] += 1;
+                    roundResult = "You Lose! Paper beats Rock";
+                } else { 
+                    score[0] += 1;
+                    roundResult = "You Win! Rock beats Scissors";}
+
+            } else if (playerSelection === "paper") {
+                if (computerSelection === "rock") {
+                    score[0] += 1;
+                    roundResult = "You Win! Paper beats Rock";
+                } else { 
+                    score[1] += 1;
+                    roundResult = "You Lose! Scissors beats Paper";}
+
+            } else if (playerSelection === "scissors") {
+                if (computerSelection === "rock") {
+                    score[1] += 1;
+                    roundResult = "You Lose! Rock beats Scissors";
+                } else { 
+                    score[0] += 1;
+                    roundResult = "You Win! Scissors beat Paper";}
+            } else {return "Your Input is Wrong!"}
+
+            let resultText = [score[0],score[1],roundResult];
+            return resultText;
+            }
+        }     
 
   </script>
 </body>
