@@ -6,8 +6,12 @@
 </head>
 <body>
   <script>
-    // Your JavaScript goes here!
-    console.log("Hello, World!")
+    const choices = ["rock","paper","scissors"];
+
+    function computerSelection() {
+        return choices[Math.floor(Math.random()*choices.length)];
+    }
+    
   </script>
 </body>
 </html>
